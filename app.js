@@ -17,6 +17,7 @@ function saveNote(event){
         content: content
     })
     saveNotes()
+    renderNotes()
 }
 
 function generateId() {
@@ -29,8 +30,9 @@ function saveNotes() {
 
 function renderNotes(){
     const notesContainer = document.getElementById('notesContainer');
+    console.log(notesContainer);
     if(notes.length === 0){
-        notes.container.innerHTML =  `
+        notesContainer.innerHTML =  `
         <div class="empty-state">
         <h2>No notes yet</h2>
         <p>Create your first note to get started!</p>
@@ -46,6 +48,16 @@ notesContainer.innerHTML = notes.map(note => `
     <div class = "note-card">
     <h3 class="note-title">${note.title}</h3>
     <p class="note-content">${note.content}</p>
+    <div class="note-actions">
+        <button class="edit-btn" onClick="openNoteDialog('${note.id}')" title="Edit Note"> 
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            </svg>
+        </button>
+        <button class="delete-btn" onClick="deleteNote('${note.id}')" title="Delete Note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            </svg>
+        </button>
+
 
     </div>
 
